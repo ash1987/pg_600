@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">pg_600</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="welcome_gxts">新版本</string>
+    <string name="welcome_gx">立即更新</string>
+    <string name="welcome_gxwait">稍后再说</string>
+    <string name="welcome_gxzt">升级中,请稍候...</string>
+    <string name="update_progress_num">%1$s/%2$s</string>
+    <string name="networkoff">无可用网络</string>
+    <string name="networktimeout">网络连接超时</string>
+    <string name="hostrefuse">服务器错误</string>
+	<string name="loading">加载中...</string>
+	<string name="click_again_exit">再按一次退出程序</string>
+	
+	<string name="main_menu_string">主菜单</string>
+	<string name="setting_string">系统设置</string>
+	<string name="smart_home_string">智能家居</string>
+	
+	<string name="remember_pwd_string">记住密码</string>
+	<string name="forget_pwd_string">忘记密码?</string>
+	<string name="register_new_user_string">新用户注册</string>
+	<string name="user_login_string">用户登录</string>
+	<string name="auto_login_string">自动登录</string>
+	
+	<string name="username_lage">用户名不能超过25位</string>
+	<string name="passwork_num_lage">密码长度不能超过20位</string>
+	<string name="please_input_username">请输入用户名</string>
+	<string name="input_new_password">请输入密码</string>
+	<string name="passwork_lenth_err">请至少输入6位密码</string>
+	
+	<string name="new_user_register_string">新用户注册</string>
+	<string name="register_account_string">注册账号</string>
+	<string name="hint_input_phone_string">请输入您的手机号码</string>
+	<string name="hint_input_pwd_string">请输入您的密码</string>
+	<string name="hint_input_verify_code_string">请输入验证码</string>
+	<string name="request_verify_code_string">获取验证码</string>
+	<string name="liji_register_string">立即注册</string>
+	<string name="tele_num_lage">手机号码不能超过11位</string>
+	<string name="verify_lage">验证码长度不得超过6位</string>
+	<string name="phone_num">请输入手机号码</string>
+	<string name="verify">请输入验证码</string>
+	<string name="user_format_err">请输入正确的11位手机号码</string>
+	<string name="verify_mini">请输入6位验证码</string>
+	<string name="password_null">请输入密码</string>
+	<string name="password_lenth">密码长度不能小于6位</string>
+	<string name="register_success_string">恭喜您注册成功!</string>
+	<string name="return_login_page_string">返回登录页面</string>
+	<string name="retry_send_verify_code">(%1$ss) 重新发送</string>
+	
+	<string name="forget_password_string">忘记密码</string>
+	<string name="retry_password_string">重置密码</string>
+	<string name="ensure">确认</string>
+	<string name="verify_notify_string">请使用安全手机***********获取验证码短信</string>
+	<string name="please_input_new_pwd_string">请输入新密码</string>
+	<string name="please_input_new_pwd_again_string">请输入确定密码</string>
+	<string name="password_not_same_string">两次输入的密码不一致</string>
+	
+	<string name="light_setting_string">灯光设置</string>
+	<string name="air_conditioning_string">空调设置</string>
+	<string name="tv_string">电视设置</string>
+	<string name="about_string">关于</string>
+	<string name="cancle_string">取消</string>
+	<string name="ok_string">完成</string>
+	<string name="app_name_string">软件名称：%1$s</string>
+	<string name="app_version_string">软件版本：%1$s</string>
+	<string name="check_version_string">检测新版本</string>
+	
+	<!-- 系统设置 -->
+	<string name="smart_config_settings">智能配置</string>
+	<string name="smart_config_success">配置成功!</string>
+	<string name="smart_config_failure">配置失败</string>
+	<string name="smart_wifilist">wifi列表</string>
+	<string name="smart_wifi_noap">搜索不到AP,重新搜索</string>
+	
+	<string name="remote_config_settings">遥控器对码设置</string>
+	<string name="remote_adddevice">添加设备</string>
+	<string name="remote_voice_switch">声光报警</string>
+	<string name="remote_phone_switch">电话开关</string>
+	<string name="remote_sms_switch">短信开关</string>
+	
+	<string name="remote_begin_learn">开始学习</string>
+	<string name="remote_areaname">防区名称</string>
+	<string name="remote_areatype">防区类型</string>
+	<string name="remote_policephone">报警电话</string>
+	<string name="remote_textreceive_number">短信接收号码</string>
+	<string name="remote_policetexttitle">报警短信内容编辑</string>
+	<string name="remote_savetext">保存短信内容</string>
+	
+	<string name="text_config_settings">短信接收号码设置</string>
+	<string name="text_edittext_hint">请输入短信号码</string>
+	
+	<string name="policephone_config_settings">报警电话设置</string>
+	<string name="policephone_edittext_hint">请输入电话号码</string>
+	
+</resources>

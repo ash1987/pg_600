@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">pg_600</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="welcome_gxts">新版本</string>
+    <string name="welcome_gx">立即更新</string>
+    <string name="welcome_gxwait">稍后再说</string>
+    <string name="welcome_gxzt">升级中,请稍候...</string>
+    <string name="update_progress_num">%1$s/%2$s</string>
+    <string name="networkoff">无可用网络</string>
+    <string name="networktimeout">网络连接超时</string>
+    <string name="hostrefuse">服务器错误</string>
+
+</resources>
