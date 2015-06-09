@@ -22,6 +22,7 @@ public class WheelMain {
 	private WheelView wv_day;
 	private WheelView wv_hours;
 	private WheelView wv_mins;
+	private WheelView wv_temperature;
 	private static int START_YEAR = 1990, END_YEAR = 2100;
 
 	public WheelMain() {
@@ -130,6 +131,13 @@ public class WheelMain {
 		wv_mins.setCyclic(true);
 		wv_mins.setLabel("分");
 		wv_mins.setCurrentItem(minute);
+		
+		//溫度
+		wv_temperature = (WheelView) view.findViewById(R.id.temperatureWhellView);
+		wv_temperature.setAdapter(new NumericWheelAdapter(0, 40));
+		wv_temperature.setCyclic(true);
+		wv_temperature.setLabel("℃");
+		wv_mins.setCurrentItem(23);
 
 		// 添加"年"监听
 		OnWheelChangedListener wheelListener_year = new OnWheelChangedListener() {
@@ -182,6 +190,7 @@ public class WheelMain {
         }          
 		textSize = 50;
 
+		wv_temperature.TEXT_SIZE = textSize;
 		wv_day.TEXT_SIZE = textSize;
 		wv_hours.TEXT_SIZE = textSize;
 		wv_mins.TEXT_SIZE = textSize;

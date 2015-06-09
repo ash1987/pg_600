@@ -3,6 +3,7 @@ package com.company.pg.fragment;
 import com.company.pg.R;
 import com.company.pg.adapter.SmartHomeAdapter;
 import com.company.pg.ui.AboutActivity;
+import com.company.pg.ui.AirConditioningActivity;
 import com.company.pg.ui.LightsSettingActivity;
 import com.company.pg.ui.SmartConfigActivity;
 
@@ -66,6 +67,9 @@ public class SmartHomeFragment extends Fragment implements OnItemClickListener {
 		switch (position) {
 		case 0://灯光设置
 			targetClass = LightsSettingActivity.class;
+			break;
+		case 1://冰箱控制
+			targetClass = AirConditioningActivity.class;
 			break;
 		case 3://关于
 			targetClass = AboutActivity.class;
