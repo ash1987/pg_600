@@ -6,6 +6,7 @@ import com.company.pg.ui.AboutActivity;
 import com.company.pg.ui.AirConditioningActivity;
 import com.company.pg.ui.LightsSettingActivity;
 import com.company.pg.ui.SmartConfigActivity;
+import com.company.pg.ui.TvSettingActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -70,6 +71,9 @@ public class SmartHomeFragment extends Fragment implements OnItemClickListener {
 			break;
 		case 1://冰箱控制
 			targetClass = AirConditioningActivity.class;
+			break;
+		case 2://电视控制
+			targetClass = TvSettingActivity.class;
 			break;
 		case 3://关于
 			targetClass = AboutActivity.class;

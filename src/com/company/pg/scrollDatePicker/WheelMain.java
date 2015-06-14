@@ -134,7 +134,7 @@ public class WheelMain {
 		
 		//溫度
 		wv_temperature = (WheelView) view.findViewById(R.id.temperatureWhellView);
-		wv_temperature.setAdapter(new NumericWheelAdapter(0, 40));
+		wv_temperature.setAdapter(new NumericWheelAdapter(17, 30));
 		wv_temperature.setCyclic(true);
 		wv_temperature.setLabel("℃");
 		wv_mins.setCurrentItem(23);
@@ -184,11 +184,10 @@ public class WheelMain {
 		// 根据屏幕密度来指定选择器字体的大小
 		int textSize = 0;
         if("M".equals(AndroidUtils.getDencityType(context))||"H".equals(AndroidUtils.getDencityType(context))){
-        	textSize = 25;
+        	textSize = 15;
         }else{
-        	textSize = 50;      	
+        	textSize = 30;      	
         }          
-		textSize = 50;
 
 		wv_temperature.TEXT_SIZE = textSize;
 		wv_day.TEXT_SIZE = textSize;

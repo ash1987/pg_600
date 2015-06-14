@@ -2,10 +2,7 @@ package com.company.pg.fragment;
 
 import com.company.pg.R;
 import com.company.pg.adapter.SettingsHomeAdapter;
-import com.company.pg.adapter.SmartHomeAdapter;
-import com.company.pg.ui.LightsSettingActivity;
-import com.company.pg.ui.SmartConfigActivity;
-
+import com.company.pg.ui.IntelligentConfigureActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -14,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
 
 /**
@@ -60,11 +56,11 @@ public class SettingsFragment extends Fragment implements OnItemClickListener {
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position,
 			long id) {
-		Class targetClass = SmartConfigActivity.class;
+		Class targetClass = IntelligentConfigureActivity.class;
 		
 		switch (position) {
-		case 0://灯光设置
-			targetClass = SmartConfigActivity.class;
+		case 0://智能配置
+			targetClass = IntelligentConfigureActivity.class;
 			break;
 
 		default:

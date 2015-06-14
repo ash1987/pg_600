@@ -21,9 +21,7 @@ package com.company.pg.scrollDatePicker;
 
 import java.util.LinkedList;
 import java.util.List;
-
 import com.company.pg.R;
-
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -42,7 +40,6 @@ import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.GestureDetector.SimpleOnGestureListener;
-import android.view.View.MeasureSpec;
 import android.view.animation.Interpolator;
 import android.widget.Scroller;
 
@@ -70,7 +67,7 @@ public class WheelView extends View {
 			0x00AAAAAA, 0x00AAAAAA };
 
 	/** Additional items height (is added to standard text item height) */
-	private static final int ADDITIONAL_ITEM_HEIGHT = 15;
+	private static final int ADDITIONAL_ITEM_HEIGHT = 30;
 
 	/** Text size */
 	public int TEXT_SIZE;
@@ -88,7 +85,7 @@ public class WheelView extends View {
 	private static final int PADDING = 10;
 
 	/** Default count of visible items */
-	private static final int DEF_VISIBLE_ITEMS = 5;
+	private static final int DEF_VISIBLE_ITEMS = 3;
 
 	// Wheel Values
 	private WheelAdapter adapter = null;
@@ -416,7 +413,7 @@ public class WheelView extends View {
 			bottomShadow = new GradientDrawable(Orientation.BOTTOM_TOP, SHADOWS_COLORS);
 		}
 
-		setBackgroundResource(R.drawable.wheel_bg);
+		setBackgroundResource(R.drawable.wheel_bg1);
 	}
 
 	/**
@@ -678,8 +675,8 @@ public class WheelView extends View {
 			canvas.restore();
 		}
 
-		drawCenterRect(canvas);
-		drawShadows(canvas);
+//		drawCenterRect(canvas);
+//		drawShadows(canvas);
 	}
 
 	/**
