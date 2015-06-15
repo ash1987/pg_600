@@ -5,9 +5,7 @@ import com.company.pg.adapter.SmartHomeAdapter;
 import com.company.pg.ui.AboutActivity;
 import com.company.pg.ui.AirConditioningActivity;
 import com.company.pg.ui.LightsSettingActivity;
-import com.company.pg.ui.SmartConfigActivity;
 import com.company.pg.ui.TvSettingActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
