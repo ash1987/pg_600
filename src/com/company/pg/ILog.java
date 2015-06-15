@@ -1,7 +1,8 @@
-package com.company.pg;
+﻿package com.company.pg;
 
 import java.util.Date;
 import android.util.Log;
+
 
 /**
  * 
