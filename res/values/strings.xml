@@ -72,6 +72,8 @@
     <string name="air_songfeng_string">送 风</string>
     <string name="air_baifeng_string">摆 风</string>
     <string name="air_tingzhi_string">停 止</string>
+    <string name="scan_desc">请扫描二维码，系统会自动读取相关信息</string>
+    <string name="yj_in_string">硬件接入</string>
 
     <!-- 系统设置 -->
     <string name="smart_config_settings">智能配置</string>

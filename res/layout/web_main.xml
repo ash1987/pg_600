@@ -7,7 +7,8 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/head_title_height"
-        android:background="@drawable/top_bar_bg" >
+        android:background="@drawable/top_bar_bg"
+        android:visibility="gone" >
 
         <ImageView
             android:id="@+id/backIv"

@@ -50,26 +50,41 @@
                 android:layout_height="1dp"
                 android:layout_centerInParent="true" />
 
-            <EditText
-                android:id="@+id/login_username_et"
+            <RelativeLayout
+                android:id="@+id/login_username_rl"
                 android:layout_width="230dp"
                 android:layout_height="35dp"
                 android:layout_above="@id/tempView"
-                android:layout_centerHorizontal="true"
-                android:background="@drawable/login_usr_bg"
-                android:drawableLeft="@drawable/login_user_icon"
-                android:drawableRight="@drawable/login_user_code_icon"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:singleLine="true"
-                android:textColor="#abbcc7"
-                android:textColorHint="@android:color/white"
-                android:textSize="15sp" />
+                android:layout_centerHorizontal="true" >
+
+                <EditText
+                    android:id="@+id/login_username_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/login_usr_bg"
+                    android:drawableLeft="@drawable/login_user_icon"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:singleLine="true"
+                    android:textColor="#abbcc7"
+                    android:textColorHint="@android:color/white"
+                    android:textSize="15sp" />
+                
+               <ImageButton
+                   android:id="@+id/codeIb"
+                   android:layout_width="17dp"
+                   android:layout_height="17dp"
+                   android:layout_alignParentRight="true"
+                   android:layout_centerVertical="true"
+                   android:layout_marginRight="12dp"
+                   android:background="@drawable/login_user_code_icon"/> 
+               
+            </RelativeLayout>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_above="@id/login_username_et"
+                android:layout_above="@id/login_username_rl"
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="25dp"
                 android:text="@string/user_login_string"

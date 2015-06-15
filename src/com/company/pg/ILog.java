@@ -3,7 +3,6 @@
 import java.util.Date;
 import android.util.Log;
 
-
 /**
  * 
  * 描述：日志封装类

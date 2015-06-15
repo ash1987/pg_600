@@ -3,6 +3,7 @@ package com.company.pg.ui;
 import com.company.pg.R;
 import com.company.pg.base.BaseActivity;
 import com.company.pg.widget.CustomToast;
+import com.company.pg.zing.activity.CaptureActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -17,6 +18,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,6 +40,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 	private CheckBox autoLoginCb;
 	private TextView forgetPwdTv;
 	private TextView registerUserTv;
+	private ImageButton codeIb;
 
 	@Override
 	protected void initData() {
@@ -54,6 +57,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 		autoLoginCb = (CheckBox) findViewById(R.id.autoLoginCb);
 		forgetPwdTv = (TextView) findViewById(R.id.forgetPwdTv);
 		registerUserTv = (TextView) findViewById(R.id.registerUserTv);
+		codeIb = (ImageButton) findViewById(R.id.codeIb);
 	}
 
 	@Override
@@ -61,6 +65,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 		loginBt.setOnClickListener(this);
 		forgetPwdTv.setOnClickListener(this);
 		registerUserTv.setOnClickListener(this);
+		codeIb.setOnClickListener(this);
 
 		//登录名长度限制
 		loginUsernameEt.addTextChangedListener(new TextWatcher() {
@@ -246,6 +251,9 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 			break;
 		case R.id.forgetPwdTv:
 			startActivity(new Intent(LoginActivity.this, FindUserPwdActivity.class));
+			break;
+		case R.id.codeIb:
+			startActivity(new Intent(LoginActivity.this, CaptureActivity.class));
 			break;
 		default:
 			break;
