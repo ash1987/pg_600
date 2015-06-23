@@ -52,3 +52,9 @@
 # view AndroidManifest.xml #generated:24
 -keep class com.company.pg.ui.WelcomeActivity { <init>(...); }
 
+# view AndroidManifest.xml #generated:111
+-keep class com.company.pg.zing.activity.CaptureActivity { <init>(...); }
+
+# view res/layout/capture.xml #generated:12
+-keep class com.company.pg.zing.view.ViewfinderView { <init>(...); }
+

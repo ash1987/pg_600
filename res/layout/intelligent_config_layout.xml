@@ -50,7 +50,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginTop="20dp"
-<<<<<<< HEAD
+
         android:gravity="center"
         android:layout_gravity="center_vertical"
         android:orientation="vertical" >
@@ -71,7 +71,7 @@
             android:layout_height="50dp"
             android:text="綁定设备"
             />
-=======
+
         android:background="#dbdbdb"
         android:orientation="vertical" >
 
@@ -121,7 +121,7 @@
             android:singleLine="true"
             android:textColor="@color/black"
             android:textSize="16sp" />
->>>>>>> ceb6c7ef79e42bf1c3e8a1ef10e61d1ce80e2b55
+
     </LinearLayout>
 
     <CheckBox
