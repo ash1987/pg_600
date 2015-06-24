@@ -11,4 +11,25 @@
         layout="@layout/second_title_view"
         android:padding="15dp" />
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="35dp"
+        android:layout_marginRight="35dp"
+        android:layout_marginTop="20dp" >
+
+        <CheckBox
+            android:id="@+id/soundCb"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:button="@drawable/sound_check_selector" />
+
+        <CheckBox
+            android:id="@+id/onOroffCb"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentRight="true"
+            android:button="@drawable/light_check_selector" />
+    </RelativeLayout>
+
 </LinearLayout>
