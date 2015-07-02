@@ -187,15 +187,22 @@ public class MessageCenter {
 
 	/**
 	 * 绑定设备.
-	 *
-	 * @param uid            用户名
-	 * @param token            密码
-	 * @param did            did
-	 * @param passcode            passcode
+	 * 
+	 * @param uid
+	 *            用户名
+	 * @param token
+	 *            密码
+	 * @param did
+	 *            did
+	 * @param passcode
+	 *            passcode
+	 * @param remark
+	 *            备注
 	 */
 	public void cBindDevice(String uid, String token, String did,
-			String passcode) {
-		xpgWifiGCC.bindDevice(uid, token, did, passcode, null);
+			String passcode, String remark) {
+
+		xpgWifiGCC.bindDevice(uid, token, did, passcode, remark);
 	}
 	
 	// =================================================================

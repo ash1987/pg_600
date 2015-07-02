@@ -1,9 +1,11 @@
 package com.company.pg.ui;
 
+import zxing.CaptureActivity;
+
 import com.company.pg.R;
 import com.company.pg.base.BaseActivity;
+import com.company.pg.utils.ToastUtils;
 import com.company.pg.widget.CustomToast;
-import com.company.pg.zing.activity.CaptureActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -253,6 +255,10 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 			startActivity(new Intent(LoginActivity.this, FindUserPwdActivity.class));
 			break;
 		case R.id.codeIb:
+			if(TextUtils.isEmpty(setmanager.getUid()) || TextUtils.isEmpty(setmanager.getToken())) {
+				ToastUtils.showShort(LoginActivity.this, "请先登录！");
+				return;
+			}
 			startActivity(new Intent(LoginActivity.this, CaptureActivity.class));
 			break;
 		default:

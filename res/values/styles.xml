@@ -2,13 +2,13 @@
 
     <!--
         Base application theme, dependent on API level. This theme is replaced
-        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
     -->
     <style name="AppBaseTheme" parent="android:Theme.Light">
         <!--
             Theme customizations available in newer API levels can go in
             res/values-vXX/styles.xml, while customizations related to
-            backward-compatibility can go here.
+            backward-compatibility can go here.
         -->
     </style>
 
@@ -28,8 +28,8 @@
         <item name="android:paddingBottom">4dp</item>
         <item name="android:paddingTop">6dp</item>
     </style>
-    
-        <!-- 主页Tab页RadioBtn风格 -->
+
+    <!-- 主页Tab页RadioBtn风格 -->
     <style name="radio_botton_style1">
         <item name="android:gravity">center</item>
         <item name="android:layout_width">match_parent</item>
@@ -95,10 +95,19 @@
     </style>
 
     <style name="alertdialog" parent="@android:Theme.Dialog">
-		<item name="android:windowFrame">@null</item>
-		<item name="android:windowBackground">@color/transparent</item>
-		<item name="android:windowNoTitle">true</item>
-		<item name="android:windowIsTranslucent">true</item>
-		<item name="android:windowIsFloating">true</item>
-	</style>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowBackground">@color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowIsFloating">true</item>
+    </style>
+
+    <style name="ButtonBlue">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:background">@drawable/button_blue_long</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+    </style>
+
 </resources>
