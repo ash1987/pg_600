@@ -32,7 +32,7 @@ import android.widget.Toast;
 /**
  * 主菜单界面
  */
-public class MainFragment extends BaseFragment  implements OnClickListener{
+public class MainFragment extends BaseFragment implements OnClickListener {
 	public static final String FRAGMENT_TAG = MainFragment.class
 			.getSimpleName();
 
@@ -77,21 +77,23 @@ public class MainFragment extends BaseFragment  implements OnClickListener{
 
 	private CustomDialog customDialog;
 
-	private ImageButton lockBtn,unlockBtn,main_talkback_btn,main_sethome_btn,main_sos_btn,main_alarm_btn,main_system_state_btn,main_siren_on_btn,main_siren_off_btn;
+	private ImageButton lockBtn, unlockBtn, main_talkback_btn,
+			main_sethome_btn, main_sos_btn, main_alarm_btn,
+			main_system_state_btn, main_siren_on_btn, main_siren_off_btn;
 
-	//实例化监听器 
-	XPGWifiSDKListener xpgWifiSDKListener = new XPGWifiSDKListener(){ 
-		//注册用户回调
-		public void didRegisterUser(int result, String errorMessage, String uid,String token) {
-			if (result==XPGWifiErrorCode.XPGWifiError_NONE) 
-			{ 
-				//注册成功，处理注册成功的逻辑
+	// 实例化监听器
+	XPGWifiSDKListener xpgWifiSDKListener = new XPGWifiSDKListener() {
+		// 注册用户回调
+		public void didRegisterUser(int result, String errorMessage,
+				String uid, String token) {
+			if (result == XPGWifiErrorCode.XPGWifiError_NONE) {
+				// 注册成功，处理注册成功的逻辑
 				Log.e("====", "注册成功");
-			}else{ 
-				//注册失败，处理注册失败的逻辑 
+			} else {
+				// 注册失败，处理注册失败的逻辑
 				Log.e("====", "注册失败");
-			} 
-		}; 
+			}
+		};
 
 		@Override
 		public void didDiscovered(int error, List<XPGWifiDevice> devicesList) {
@@ -99,15 +101,16 @@ public class MainFragment extends BaseFragment  implements OnClickListener{
 			super.didDiscovered(error, devicesList);
 			Log.e("====", devicesList.toString());
 		}
-	}; 
+	};
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		//注册监听器 
-		XPGWifiSDK.sharedInstance().setListener(xpgWifiSDKListener); 
-		//调用SDK注册接口
-		XPGWifiSDK.sharedInstance().registerUser(Define.plantUserName, Define.plantUserPwd); 
+		// 注册监听器
+		XPGWifiSDK.sharedInstance().setListener(xpgWifiSDKListener);
+		// 调用SDK注册接口
+		XPGWifiSDK.sharedInstance().registerUser(Define.plantUserName,
+				Define.plantUserPwd);
 		initData();
 	}
 
@@ -129,13 +132,18 @@ public class MainFragment extends BaseFragment  implements OnClickListener{
 	private void initView(View view) {
 		lockBtn = (ImageButton) view.findViewById(R.id.main_lock_btn);
 		unlockBtn = (ImageButton) view.findViewById(R.id.main_unlock_btn);
-		main_talkback_btn = (ImageButton) view.findViewById(R.id.main_talkback_btn);
-		main_sethome_btn = (ImageButton) view.findViewById(R.id.main_sethome_btn);
+		main_talkback_btn = (ImageButton) view
+				.findViewById(R.id.main_talkback_btn);
+		main_sethome_btn = (ImageButton) view
+				.findViewById(R.id.main_sethome_btn);
 		main_sos_btn = (ImageButton) view.findViewById(R.id.main_sos_btn);
 		main_alarm_btn = (ImageButton) view.findViewById(R.id.main_alarm_btn);
-		main_system_state_btn = (ImageButton) view.findViewById(R.id.main_system_state_btn);
-		main_siren_on_btn = (ImageButton) view.findViewById(R.id.main_siren_on_btn);
-		main_siren_off_btn = (ImageButton) view.findViewById(R.id.main_siren_off_btn);
+		main_system_state_btn = (ImageButton) view
+				.findViewById(R.id.main_system_state_btn);
+		main_siren_on_btn = (ImageButton) view
+				.findViewById(R.id.main_siren_on_btn);
+		main_siren_off_btn = (ImageButton) view
+				.findViewById(R.id.main_siren_off_btn);
 	}
 
 	// 设置控件属性
@@ -149,17 +157,24 @@ public class MainFragment extends BaseFragment  implements OnClickListener{
 		main_system_state_btn.setOnClickListener(this);
 		main_siren_on_btn.setOnClickListener(this);
 		main_siren_off_btn.setOnClickListener(this);
+	}
 
-		if(MyApplication.controlDevice != null) {
-			xpgWifiDevice = BaseActivity.findDeviceByMac(MyApplication.controlDevice.getMac(),
+	@Override
+	public void onResume() {
+		super.onResume();
+
+		if (MyApplication.controlDevice != null) {
+			xpgWifiDevice = BaseActivity.findDeviceByMac(
+					MyApplication.controlDevice.getMac(),
 					MyApplication.controlDevice.getDid());
 		}
 	}
 
 	final protected static char[] hexArray = "0123456789ABCDEF".toCharArray();
+
 	public static String bytesToHex(byte[] bytes) {
 		char[] hexChars = new char[bytes.length * 3];
-		for ( int j = 0; j < bytes.length; j++ ) {
+		for (int j = 0; j < bytes.length; j++) {
 			int v = bytes[j] & 0xFF;
 			hexChars[j * 3] = hexArray[v >>> 4];
 			hexChars[j * 3 + 1] = hexArray[v & 0x0F];
@@ -193,10 +208,11 @@ public class MainFragment extends BaseFragment  implements OnClickListener{
 	}
 
 	@Override
-	public boolean didReceiveData(XPGWifiDevice device, ConcurrentHashMap<String, Object> dataMap,int result){
+	public boolean didReceiveData(XPGWifiDevice device,
+			ConcurrentHashMap<String, Object> dataMap, int result) {
 
 		if (dataMap.get("data") != null) {
-			Log.i("info", (String)dataMap.get("data"));
+			Log.i("info", (String) dataMap.get("data"));
 			Message msg = new Message();
 			msg.obj = dataMap.get("data");
 			msg.what = RESP;
@@ -204,7 +220,7 @@ public class MainFragment extends BaseFragment  implements OnClickListener{
 		}
 
 		if (dataMap.get("alters") != null) {
-			Log.i("info", (String)dataMap.get("alters"));
+			Log.i("info", (String) dataMap.get("alters"));
 			Message msg = new Message();
 			msg.obj = dataMap.get("alters");
 			msg.what = LOG;
@@ -212,7 +228,7 @@ public class MainFragment extends BaseFragment  implements OnClickListener{
 		}
 
 		if (dataMap.get("faults") != null) {
-			Log.i("info", (String)dataMap.get("faults"));
+			Log.i("info", (String) dataMap.get("faults"));
 			Message msg = new Message();
 			msg.obj = dataMap.get("faults");
 			msg.what = LOG;
@@ -220,7 +236,8 @@ public class MainFragment extends BaseFragment  implements OnClickListener{
 		}
 
 		if (dataMap.get("binary") != null) {
-			Log.i("info", "Binary data:" + bytesToHex((byte[])dataMap.get("binary")));
+			Log.i("info",
+					"Binary data:" + bytesToHex((byte[]) dataMap.get("binary")));
 		}
 
 		return true;
@@ -246,17 +263,21 @@ public class MainFragment extends BaseFragment  implements OnClickListener{
 				StringBuilder sb = new StringBuilder();
 				JSONObject jsonObject;
 				try {
-					jsonObject = new JSONObject((String)msg.obj);
+					jsonObject = new JSONObject((String) msg.obj);
 					for (int i = 0; i < jsonObject.length(); i++) {
-						sb.append(jsonObject.names().getString(i) + " " + jsonObject.getInt(jsonObject.names().getString(i)) + "\r\n");
+						sb.append(jsonObject.names().getString(i)
+								+ " "
+								+ jsonObject.getInt(jsonObject.names()
+										.getString(i)) + "\r\n");
 					}
 				} catch (JSONException e) {
 					e.printStackTrace();
 				}
-				Toast.makeText(MainFragment.this.getActivity(), sb.toString(), Toast.LENGTH_SHORT).show();
+				Toast.makeText(MainFragment.this.getActivity(), sb.toString(),
+						Toast.LENGTH_SHORT).show();
 				break;
 			case UPDATE_UI:
-				//				boolean result = (Boolean) deviceStatu.get(KEY_LIGHT_ON_OFF);
+				// boolean result = (Boolean) deviceStatu.get(KEY_LIGHT_ON_OFF);
 				break;
 			}
 		}
@@ -297,9 +318,8 @@ public class MainFragment extends BaseFragment  implements OnClickListener{
 		handler.sendMessage(msg);
 	}
 
-	private void showAlertDialog(String title, String content,
-			String positive) {
-		if (customDialog!=null && customDialog.isShowing()) {
+	private void showAlertDialog(String title, String content, String positive) {
+		if (customDialog != null && customDialog.isShowing()) {
 			return;
 		}
 
@@ -315,11 +335,11 @@ public class MainFragment extends BaseFragment  implements OnClickListener{
 		customDialog.setPositiveButton(positive,
 				new DialogInterface.OnClickListener() {
 
-			@Override
-			public void onClick(DialogInterface dialog, int which) {
-				dialog.dismiss();
-			}
-		});
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						dialog.dismiss();
+					}
+				});
 
 		customDialog.show();
 	}
@@ -328,7 +348,7 @@ public class MainFragment extends BaseFragment  implements OnClickListener{
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.main_lock_btn:
-			if (xpgWifiDevice ==null || !xpgWifiDevice.isOnline()) {
+			if (xpgWifiDevice == null || !xpgWifiDevice.isOnline()) {
 				showAlertDialog("警告", "设备不在线，请在'智能配置'中设置!", "OK");
 			} else {
 				try {
@@ -339,7 +359,7 @@ public class MainFragment extends BaseFragment  implements OnClickListener{
 			}
 			break;
 		case R.id.main_unlock_btn:
-			if (xpgWifiDevice ==null || !xpgWifiDevice.isOnline()) {
+			if (xpgWifiDevice == null || !xpgWifiDevice.isOnline()) {
 				showAlertDialog("警告", "设备不在线，请在'智能配置'中设置!", "OK");
 			} else {
 				try {
@@ -353,7 +373,7 @@ public class MainFragment extends BaseFragment  implements OnClickListener{
 
 			break;
 		case R.id.main_sethome_btn:
-			if (xpgWifiDevice ==null || !xpgWifiDevice.isOnline()) {
+			if (xpgWifiDevice == null || !xpgWifiDevice.isOnline()) {
 				showAlertDialog("警告", "设备不在线，请在'智能配置'中设置!", "OK");
 			} else {
 				try {
@@ -364,7 +384,7 @@ public class MainFragment extends BaseFragment  implements OnClickListener{
 			}
 			break;
 		case R.id.main_sos_btn:
-			if (xpgWifiDevice ==null || !xpgWifiDevice.isOnline()) {
+			if (xpgWifiDevice == null || !xpgWifiDevice.isOnline()) {
 				showAlertDialog("警告", "设备不在线，请在'智能配置'中设置!", "OK");
 			} else {
 				try {
@@ -375,7 +395,7 @@ public class MainFragment extends BaseFragment  implements OnClickListener{
 			}
 			break;
 		case R.id.main_alarm_btn:
-			if (xpgWifiDevice ==null || !xpgWifiDevice.isOnline()) {
+			if (xpgWifiDevice == null || !xpgWifiDevice.isOnline()) {
 				showAlertDialog("警告", "设备不在线，请在'智能配置'中设置!", "OK");
 			} else {
 				try {
@@ -386,18 +406,18 @@ public class MainFragment extends BaseFragment  implements OnClickListener{
 			}
 			break;
 		case R.id.main_system_state_btn:
-			if (xpgWifiDevice ==null || !xpgWifiDevice.isOnline()) {
-				showAlertDialog("警告", "设备不在线，请在'智能配置'中设置!", "OK");
-			} else {
-				try {
-					sendJson(KEY_CHEFANG_OFF, true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
+//			if (xpgWifiDevice == null || !xpgWifiDevice.isOnline()) {
+//				showAlertDialog("警告", "设备不在线，请在'智能配置'中设置!", "OK");
+//			} else {
+//				try {
+//					sendJson(KEY_CHEFANG_OFF, true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
 			break;
 		case R.id.main_siren_on_btn:
-			if (xpgWifiDevice ==null || !xpgWifiDevice.isOnline()) {
+			if (xpgWifiDevice == null || !xpgWifiDevice.isOnline()) {
 				showAlertDialog("警告", "设备不在线，请在'智能配置'中设置!", "OK");
 			} else {
 				try {
@@ -408,7 +428,7 @@ public class MainFragment extends BaseFragment  implements OnClickListener{
 			}
 			break;
 		case R.id.main_siren_off_btn:
-			if (xpgWifiDevice ==null || !xpgWifiDevice.isOnline()) {
+			if (xpgWifiDevice == null || !xpgWifiDevice.isOnline()) {
 				showAlertDialog("警告", "设备不在线，请在'智能配置'中设置!", "OK");
 			} else {
 				try {
