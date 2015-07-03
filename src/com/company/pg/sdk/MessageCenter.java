@@ -22,6 +22,7 @@ import org.json.JSONObject;
 
 import android.content.Context;
 
+import com.company.pg.Define;
 import com.xtremeprog.xpgconnect.XPGWifiDevice;
 import com.xtremeprog.xpgconnect.XPGWifiSDK;
 import com.xtremeprog.xpgconnect.XPGWifiSDK.XPGWifiConfigureMode;
@@ -182,7 +183,7 @@ public class MessageCenter {
 	 * @param token            密码
 	 */
 	public void cGetBoundDevices(String uid, String token) {
-		xpgWifiGCC.getBoundDevices(uid, token, "6f3074fe43894547a4f1314bd7e3ae0b");
+		xpgWifiGCC.getBoundDevices(uid, token, Define.ProductKey);
 	}
 
 	/**

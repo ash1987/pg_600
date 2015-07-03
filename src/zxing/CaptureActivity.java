@@ -17,12 +17,17 @@ package zxing;
 
 import java.io.IOException;
 import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.List;
+
 import zxing.camera.CameraManager;
 import zxing.decoding.DecodeThread;
 import zxing.utils.CaptureActivityHandler;
 import zxing.utils.InactivityTimer;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.os.Handler;
@@ -39,10 +44,14 @@ import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import com.company.pg.MyApplication;
 import com.company.pg.R;
 import com.company.pg.base.BaseActivity;
+import com.company.pg.bean.ControlDevice;
+import com.company.pg.utils.DialogManager;
 import com.company.pg.utils.ToastUtils;
 import com.google.zxing.Result;
+import com.xtremeprog.xpgconnect.XPGWifiDevice;
 
 /**
  * This activity opens the camera and does the actual scanning on a background
@@ -57,7 +66,10 @@ public final class CaptureActivity extends BaseActivity implements
 		SurfaceHolder.Callback {
 
 	private static final String TAG = CaptureActivity.class.getSimpleName();
-
+	
+	/** 登陆设备超时时间 */
+	private int LoginDeviceTimeOut = 60000;
+	
 	private CameraManager cameraManager;
 	private CaptureActivityHandler handler;
 	private InactivityTimer inactivityTimer;
@@ -70,13 +82,17 @@ public final class CaptureActivity extends BaseActivity implements
 	private String product_key, passcode, did;
 	private Button btnCancel;
 	private ImageView ivReturn;
-
+	
+	/** The progress dialog. */
+	private ProgressDialog progressDialog;
+	
+	/** 当前操作的设备 */
+	protected static XPGWifiDevice mXpgWifiDevice;
+	
 	/**
 	 * ClassName: Enum handler_key. <br/>
 	 * <br/>
-	 * date: 2014-11-26 17:51:10 <br/>
 	 * 
-	 * @author Lien
 	 */
 	private enum handler_key {
 
@@ -86,6 +102,13 @@ public final class CaptureActivity extends BaseActivity implements
 
 		FAILED,
 
+		FOUND,
+		
+		LOGIN_SUCCESS,
+		
+		LOGIN_TIMEOUT,
+		
+		LOGIN_FAIL,
 	}
 
 	/**
@@ -102,14 +125,84 @@ public final class CaptureActivity extends BaseActivity implements
 				break;
 
 			case SUCCESS:
-				ToastUtils.showShort(CaptureActivity.this, "添加成功");
+//				ToastUtils.showShort(CaptureActivity.this, "添加成功");
 //				IntentUtils.getInstance().startActivity(CaptureActivity.this,
 //						DeviceListActivity.class);
-				finish();
+//				finish();
+				
+				getList();
 				break;
 			case FAILED:
 				ToastUtils.showShort(CaptureActivity.this, "添加失败，请返回重试");
 				finish();
+				break;
+			case FOUND:
+				if(deviceslist != null && deviceslist.size() > 0) {
+					XPGWifiDevice tempDevice = deviceslist.get(0);
+					
+					if (tempDevice == null) {
+						return;
+						
+					}
+					if (tempDevice.isLAN()) {
+						if (tempDevice.isBind(setmanager.getUid())) {
+							// TODO 登陆设备
+							Log.i(TAG,
+									"本地登陆设备:mac=" + tempDevice.getPasscode() + ";ip="
+											+ tempDevice.getIPAddress() + ";did="
+											+ tempDevice.getDid() + ";passcode="
+											+ tempDevice.getPasscode());
+							loginDevice(tempDevice);
+						} else {
+							// TODO 未设备
+//							Log.i(TAG,
+//									"绑定设备:mac=" + tempDevice.getMacAddress() + ";ip="
+//											+ tempDevice.getIPAddress() + ";did="
+//											+ tempDevice.getDid() + ";passcode="
+//											+ tempDevice.getPasscode());
+//							Intent intent = new Intent(CaptureActivity.this,
+//									BindingDeviceActivity.class);
+//							intent.putExtra("mac", tempDevice.getMacAddress());
+//							intent.putExtra("did", tempDevice.getDid());
+//							startActivity(intent);
+						}
+					} else {
+						if (!tempDevice.isOnline()) {
+							// TODO 离线
+							Log.i(TAG,
+									"离线设备:mac=" + tempDevice.getPasscode() + ";ip="
+											+ tempDevice.getIPAddress() + ";did="
+											+ tempDevice.getDid() + ";passcode="
+											+ tempDevice.getPasscode());
+						} else {
+							// TODO 登陆设备
+							Log.i(TAG,
+									"远程登陆设备:mac=" + tempDevice.getPasscode() + ";ip="
+											+ tempDevice.getIPAddress() + ";did="
+											+ tempDevice.getDid() + ";passcode="
+											+ tempDevice.getPasscode());
+							loginDevice(tempDevice);
+						}
+					}
+				}
+				break;
+			case LOGIN_SUCCESS:
+				DialogManager.dismissDialog(CaptureActivity.this, progressDialog);
+				MyApplication.controlDevice = new ControlDevice(deviceslist.get(0), deviceslist.get(0).isBind(setmanager.getUid()));
+				
+				ToastUtils.showShort(CaptureActivity.this, "连接成功");
+				finish();
+				break;
+			case LOGIN_TIMEOUT:
+				DialogManager.dismissDialog(CaptureActivity.this, progressDialog);
+				ToastUtils.showShort(CaptureActivity.this, "连接失败");
+				finish();
+				break;
+			case LOGIN_FAIL:
+				DialogManager.dismissDialog(CaptureActivity.this, progressDialog);
+				ToastUtils.showShort(CaptureActivity.this, "连接失败");
+				finish();
+				break;
 			}
 		}
 	};
@@ -167,6 +260,10 @@ public final class CaptureActivity extends BaseActivity implements
 		};
 		btnCancel.setOnClickListener(myClick);
 		ivReturn.setOnClickListener(myClick);
+		
+		progressDialog = new ProgressDialog(this);
+		progressDialog.setMessage("连接中，请稍候。");
+		progressDialog.setCancelable(false);
 	}
 
 	@Override
@@ -263,7 +360,7 @@ public final class CaptureActivity extends BaseActivity implements
 			passcode = getParamFomeUrl(text, "passcode");
 			Log.i("passcode product_key did", passcode + " " + product_key
 					+ " " + did);
-			ToastUtils.showShort(this, "扫码成功");
+//			ToastUtils.showShort(this, "扫码成功");
 			mHandler.sendEmptyMessage(handler_key.START_BIND.ordinal());
 
 		} else {
@@ -409,6 +506,67 @@ public final class CaptureActivity extends BaseActivity implements
 			e.printStackTrace();
 		}
 		return 0;
+	}
+	
+	/**
+	 * 处理获取设备列表动作
+	 * 
+	 * @return the list
+	 */
+	private void getList() {
+		String uid = setmanager.getUid();
+		String token = setmanager.getToken();
+		mCenter.cGetBoundDevices(uid, token);
+	}
+	
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.gizwits.framework.activity.BaseActivity#didDiscovered(int,
+	 * java.util.List)
+	 */
+	@Override
+	protected void didDiscovered(int error, List<XPGWifiDevice> deviceList) {
+		deviceslist = deviceList;
+		if(deviceslist != null && deviceslist.size() > 0) { 
+			mHandler.sendEmptyMessage(handler_key.FOUND.ordinal());
+		}
+	}
+	
+	/**
+	 * 登陆设备
+	 * 
+	 * @param xpgWifiDevice
+	 *            the xpg wifi device
+	 */
+	private void loginDevice(XPGWifiDevice xpgWifiDevice) {
+		DialogManager.showDialog(CaptureActivity.this, progressDialog);
+		mXpgWifiDevice = xpgWifiDevice;
+		mXpgWifiDevice.setListener(deviceListener);
+		if(mXpgWifiDevice.isConnected()){
+			mHandler.sendEmptyMessage(handler_key.LOGIN_SUCCESS.ordinal());
+		}else{
+//			mHandler.sendEmptyMessageDelayed(handler_key.LOGIN_TIMEOUT.ordinal(), LoginDeviceTimeOut);
+			mXpgWifiDevice.login(setmanager.getUid(), setmanager.getToken());
+		}
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.gizwits.framework.activity.BaseActivity#didLogin(com.xtremeprog.
+	 * xpgconnect.XPGWifiDevice, int)
+	 */
+	@Override
+	public void didLogin(XPGWifiDevice device, int result) {
+		handler.removeMessages(handler_key.LOGIN_TIMEOUT.ordinal());
+		if (result == 0) {
+			mXpgWifiDevice = device;
+			mHandler.sendEmptyMessage(handler_key.LOGIN_SUCCESS.ordinal());
+		} else {
+			mHandler.sendEmptyMessage(handler_key.LOGIN_FAIL.ordinal());
+		}
+
 	}
 
 	@Override

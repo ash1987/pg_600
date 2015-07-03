@@ -4,7 +4,7 @@ public class Define {
 	//机制云平台账号
 	public static final String plantUserName = "h1382006@126.com";
 	//机制云平台密码
-	public static final String plantUserPwd = "20150410";
+	public static final String plantUserPwd = "20150410YR";
 	//机制云注册ID
 	public static final String APPID = "673d8dda9a6143848bdca0c1294667ed";
 	//机制云注册产品key

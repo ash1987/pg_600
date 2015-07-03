@@ -39,8 +39,7 @@ public class MyApplication extends Application {
 			e.printStackTrace();
 		}
 		// 启动SDK
-		XPGWifiSDK.sharedInstance().startWithAppID(getApplicationContext(), "673d8dda9a6143848bdca0c1294667ed");
-//				"6f3074fe43894547a4f1314bd7e3ae0b");
+		XPGWifiSDK.sharedInstance().startWithAppID(getApplicationContext(), Define.APPID);
 		// 设定日志打印级别
 		XPGWifiSDK.sharedInstance().setLogLevel(XPGWifiSDK.XPGWifiLogLevel.XPGWifiLogLevelAll, "GoKitDemo.log", true);
 
