@@ -1,10 +1,13 @@
 package com.company.pg.ui;
 
+import zxing.CaptureActivity;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Handler;
 import android.os.Message;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -15,6 +18,7 @@ import android.widget.Toast;
 
 import com.company.pg.R;
 import com.company.pg.base.BaseActivity;
+import com.company.pg.utils.ToastUtils;
 import com.xtremeprog.xpgconnect.XPGWifiDevice;
 
 /*
@@ -27,6 +31,7 @@ public class IntelligentConfigureActivity extends BaseActivity implements OnClic
 	private TextView wifiname;
 	private EditText wifipwd;
 	private Button bangdevice;
+	private Button qrCodeBtn;
 
 	@Override
 	public void onClick(View v) {
@@ -42,12 +47,19 @@ public class IntelligentConfigureActivity extends BaseActivity implements OnClic
 			this.finish();
 			break;
 		case R.id.bangdevice:
-	
-				dialog.show();
-				String password = wifipwd.getText().toString().trim();
-				// 发送airlink广播，把需要连接的wifi的ssid和password发给模块。
-				mCenter.cSetAirLink(connnectedWifiName, password);
-				
+
+			dialog.show();
+			String password = wifipwd.getText().toString().trim();
+			// 发送airlink广播，把需要连接的wifi的ssid和password发给模块。
+			mCenter.cSetAirLink(connnectedWifiName, password);
+
+			break;
+		case R.id.qrCodeBtn:
+			if(TextUtils.isEmpty(setmanager.getUid()) || TextUtils.isEmpty(setmanager.getToken())) {
+				ToastUtils.showShort(IntelligentConfigureActivity.this, "请先登录！");
+				return;
+			}
+			startActivity(new Intent(IntelligentConfigureActivity.this, CaptureActivity.class));
 			break;
 		default:
 			break;
@@ -73,28 +85,28 @@ public class IntelligentConfigureActivity extends BaseActivity implements OnClic
 			case FAIL:
 				dialog.cancel();
 				Toast.makeText(IntelligentConfigureActivity.this, "配置失败", Toast.LENGTH_SHORT)
-						.show();
+				.show();
 				break;
 			case SUCCESS:
 				dialog.cancel();
 				Toast.makeText(IntelligentConfigureActivity.this, "配置成功", Toast.LENGTH_SHORT)
-						.show();
+				.show();
 				finish();
 				break;
 
 			case TIEMOUT:
 				dialog.cancel();
 				Toast.makeText(IntelligentConfigureActivity.this, "配置超时", Toast.LENGTH_SHORT)
-						.show();
+				.show();
 				break;
 			}
 
 		}
 	};
 
-	
-    String connnectedWifiName;
-    
+
+	String connnectedWifiName;
+
 	@Override
 	protected void initData() {
 		WifiManager wifiManager = (WifiManager) getSystemService(WIFI_SERVICE);  
@@ -105,7 +117,7 @@ public class IntelligentConfigureActivity extends BaseActivity implements OnClic
 			Log.d("SSID",wifiInfo.getSSID());  
 		}else
 			connnectedWifiName="";
-		
+
 
 	}
 
@@ -119,6 +131,7 @@ public class IntelligentConfigureActivity extends BaseActivity implements OnClic
 		wifiname = (TextView) findViewById(R.id.wifi_name);
 		wifipwd = (EditText)findViewById(R.id.wifipwd);
 		bangdevice = (Button) findViewById(R.id.bangdevice);
+		qrCodeBtn = (Button) findViewById(R.id.qrCodeBtn);
 	}
 
 	@Override
@@ -126,6 +139,7 @@ public class IntelligentConfigureActivity extends BaseActivity implements OnClic
 		cancleBt.setOnClickListener(this);
 		okBt.setOnClickListener(this);
 		bangdevice.setOnClickListener(this);
+		qrCodeBtn.setOnClickListener(this);
 		wifiname.setText(connnectedWifiName);
 		page_title.setText(R.string.smart_config_settings);
 		dialog = new ProgressDialog(this);
@@ -140,7 +154,7 @@ public class IntelligentConfigureActivity extends BaseActivity implements OnClic
 		}
 		super.onDestroy();
 	}
-	
+
 	/*
 	 * 配置成功回调
 	 * 

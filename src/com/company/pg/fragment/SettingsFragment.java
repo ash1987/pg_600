@@ -16,7 +16,7 @@ import android.widget.AdapterView.OnItemClickListener;
 /**
  * 设置界面
  */
-public class SettingsFragment extends Fragment implements OnItemClickListener {
+public class SettingsFragment extends BaseFragment implements OnItemClickListener {
 	public static final String FRAGMENT_TAG = SettingsFragment.class
 			.getSimpleName();
 
@@ -68,5 +68,11 @@ public class SettingsFragment extends Fragment implements OnItemClickListener {
 		}
 		
 		startActivity(new Intent(SettingsFragment.this.getActivity(), targetClass));
+	}
+
+	@Override
+	protected void lazyLoad() {
+		// TODO Auto-generated method stub
+		
 	}
 }

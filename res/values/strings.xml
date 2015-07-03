@@ -101,5 +101,6 @@
     <string name="policephone_edittext_hint">请输入电话号码</string>
     <string name="qr_code_tips">将二维码放入框内，即刻自动扫描</string>
     <string name="cancel">取消</string>
+    <string name="qr_code_btn">二维码绑定</string>
 
 </resources>

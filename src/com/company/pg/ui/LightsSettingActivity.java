@@ -259,7 +259,7 @@ public class LightsSettingActivity extends BaseActivity implements OnClickListen
 		switch (v.getId()) {
 		case R.id.lightOnRl:
 			if (xpgWifiDevice ==null || !xpgWifiDevice.isOnline()) {
-				showAlertDialog("警告", "设备不在线，不可以做控制!", "OK");
+				showAlertDialog("警告", "设备不在线，请在'智能配置'中设置!", "OK");
 			} else {
 				try {
 					sendJson(KEY_LIGHT_ON_OFF, true);
@@ -270,7 +270,7 @@ public class LightsSettingActivity extends BaseActivity implements OnClickListen
 			break;
 		case R.id.lightOffRl:
 			if (xpgWifiDevice ==null || !xpgWifiDevice.isOnline()) {
-				showAlertDialog("警告", "设备不在线，不可以做控制!", "OK");
+				showAlertDialog("警告", "设备不在线，请在'智能配置'中设置!", "OK");
 			} else {
 				try {
 					sendJson(KEY_LIGHT_ON_OFF, false);

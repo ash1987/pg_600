@@ -47,31 +47,28 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginTop="20dp"
-
         android:gravity="center"
-        android:layout_gravity="center_vertical"
         android:orientation="vertical" >
-        
-        <TextView 
+
+        <TextView
             android:id="@+id/wifi_name"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            />
+            android:layout_height="wrap_content" />
+
         <EditText
             android:id="@+id/wifipwd"
             android:layout_width="200dp"
-            android:layout_height="50dp"
-            />
-        <Button 
+            android:layout_height="50dp" />
+
+        <Button
             android:id="@+id/bangdevice"
             android:layout_width="100dp"
             android:layout_height="50dp"
-            android:text="綁定设备"
-            />
-
+            android:text="綁定设备" />
         android:background="#dbdbdb"
         android:orientation="vertical" >
 
@@ -121,7 +118,6 @@
             android:singleLine="true"
             android:textColor="@color/black"
             android:textSize="16sp" />
-
     </LinearLayout>
 
     <CheckBox
@@ -137,15 +133,38 @@
         android:textColor="@color/black"
         android:textSize="12sp" />
 
-    <Button
-        android:id="@+id/ensureBtn"
-        android:layout_width="150dp"
-        android:layout_height="30dp"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:background="@drawable/intelligent_ensure_selector"
-        android:gravity="center"
-        android:text="@string/ensure"
-        android:textColor="@color/black"
-        android:textSize="13sp" />
+        android:orientation="horizontal"
+        android:weightSum="2" >
+
+        <Button
+            android:id="@+id/ensureBtn"
+            android:layout_width="0.0dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="20dp"
+            android:layout_weight="1"
+            android:background="@drawable/intelligent_ensure_selector"
+            android:gravity="center"
+            android:text="@string/ensure"
+            android:textColor="@color/black"
+            android:textSize="13sp" />
+
+        <Button
+            android:id="@+id/qrCodeBtn"
+            android:layout_width="0.0dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="40dp"
+            android:layout_weight="1"
+            android:background="@drawable/intelligent_ensure_selector"
+            android:gravity="center"
+            android:text="@string/qr_code_btn"
+            android:textColor="@color/black"
+            android:textSize="13sp" />
+    </LinearLayout>
 
 </LinearLayout>

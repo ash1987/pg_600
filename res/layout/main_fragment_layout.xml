@@ -27,10 +27,12 @@
             android:src="@drawable/main_disarm" />
     </LinearLayout>
     <!-- 第er行 -->
-                <View
-            android:layout_width="fill_parent"
-            android:layout_height="1dp"
-            android:background="#3b3b3b" />
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="#3b3b3b" />
+
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="80dp"
@@ -62,10 +64,10 @@
             android:src="@drawable/main_coercion_alarm" />
     </LinearLayout>
 
-                <View
-            android:layout_width="fill_parent"
-            android:layout_height="1dp"
-            android:background="#3b3b3b" />
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="#3b3b3b" />
     <!-- 第三行 -->
 
     <LinearLayout
@@ -99,10 +101,10 @@
             android:src="@drawable/main_siren_on" />
     </LinearLayout>
 
-            <View
-            android:layout_width="fill_parent"
-            android:layout_height="1dp"
-            android:background="#3b3b3b" />
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="#3b3b3b" />
     <!-- 第四行 -->
 
     <LinearLayout

@@ -19,7 +19,7 @@ import android.widget.ListView;
 /**
  * 智能家居界面
  */
-public class SmartHomeFragment extends Fragment implements OnItemClickListener {
+public class SmartHomeFragment extends BaseFragment implements OnItemClickListener {
 	public static final String FRAGMENT_TAG = SmartHomeFragment.class
 			.getSimpleName();
 
@@ -81,5 +81,11 @@ public class SmartHomeFragment extends Fragment implements OnItemClickListener {
 		}
 		
 		startActivity(new Intent(SmartHomeFragment.this.getActivity(), targetClass));
+	}
+
+	@Override
+	protected void lazyLoad() {
+		// TODO Auto-generated method stub
+		
 	}
 }
